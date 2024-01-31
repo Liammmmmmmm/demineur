@@ -12,9 +12,10 @@ body {
   cursor: none;
 }
 body #customCursor {
+  top: 0;
   width: 100vw;
   height: 100vh;
-  position: absolute;
+  position: fixed;
   z-index: 3245657856453423;
   pointer-events: none;
 }
