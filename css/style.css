@@ -1,0 +1,218 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;900&display=swap");
+body {
+  font-family: "Roboto";
+  font-weight: 900;
+  display: flex;
+  min-width: 100vw;
+  min-height: 100vh;
+  margin: 0;
+  align-items: center;
+  justify-content: center;
+  cursor: none;
+}
+body #customCursor {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  z-index: 3245657856453423;
+  pointer-events: none;
+}
+body .infos {
+  position: fixed;
+  top: 20px;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.4941176471);
+  display: flex;
+  z-index: 1000;
+  pointer-events: none;
+}
+body .infos div {
+  padding: 10px;
+}
+body .infos .timercontent:after {
+  content: " secondes";
+}
+body .infos .flagsleft:after {
+  content: " drapeaux restants";
+}
+body .infos #diff {
+  pointer-events: all;
+}
+body #gridcontainer #hide {
+  z-index: 10;
+}
+body #gridcontainer #hide tr .hidecell {
+  background-color: #88db44;
+}
+body #gridcontainer #hide tr .mark::after {
+  content: "⚑";
+  color: red;
+}
+body #gridcontainer #hide tr:nth-child(odd) > .hidecell:nth-child(odd) {
+  background-color: #aae945;
+}
+body #gridcontainer #hide tr:nth-child(even) > .hidecell:nth-child(even) {
+  background-color: #aae945;
+}
+body #gridcontainer #game {
+  transform: translateY(-100%);
+}
+body #gridcontainer #game tr:nth-child(odd) > .background-cell:nth-child(odd) {
+  background-color: #d7d97a;
+}
+body #gridcontainer #game tr:nth-child(even) > .background-cell:nth-child(even) {
+  background-color: #d7d97a;
+}
+body #gridcontainer table {
+  position: relative;
+  border-collapse: collapse;
+}
+body #gridcontainer table tr {
+  border-spacing: 0;
+}
+body #gridcontainer table tr td {
+  height: 30px;
+  width: 30px;
+  border-spacing: 0px;
+  text-align: center;
+  min-width: 25px;
+}
+body #gridcontainer table tr .mine {
+  background: #dfe087;
+}
+body #gridcontainer table tr .mine .mine-element {
+  background: red;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  margin: 4px;
+}
+body #gridcontainer table tr .nomine {
+  background-color: #dfe087;
+}
+body #gridcontainer table tr .m1 {
+  color: #0092f3;
+}
+body #gridcontainer table tr .m2 {
+  color: #00c04a;
+}
+body #gridcontainer table tr .m3 {
+  color: #e29b00;
+}
+body #gridcontainer table tr .m4 {
+  color: #f30000;
+}
+body #gridcontainer table tr .m5 {
+  color: #8600f3;
+}
+body #gridcontainer table tr .m6 {
+  color: #f300be;
+}
+body #gridcontainer table tr .m7 {
+  color: #000;
+}
+body #gridcontainer table tr .m8 {
+  animation: wowowowow 5s infinite alternate;
+}
+body .gameover {
+  display: none;
+  background-color: rgba(216, 87, 36, 0.9176470588);
+}
+body .win {
+  display: none;
+  background-color: rgba(25, 216, 82, 0.9176470588);
+}
+body .endscreen {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1000;
+  min-height: 20vh;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+body .endscreen .title {
+  font-size: 52px;
+  margin-bottom: 20px;
+}
+body .endscreen .container {
+  display: flex;
+}
+body .endscreen .container .item {
+  display: flex;
+  padding: 0 20px;
+  align-items: flex-end;
+}
+body .endscreen .container .item .num {
+  font-size: 32px;
+}
+body .endscreen .container .item .lab {
+  color: #2e2e2e;
+  transform: translateY(-5px);
+}
+body .endscreen .restart {
+  padding: 10px;
+  margin: 10px;
+  border-radius: 20px;
+  border: 1px solid #000;
+  cursor: pointer;
+}
+body .endscreen .restart:hover {
+  background-color: rgba(255, 255, 255, 0.2549019608);
+}
+
+@keyframes wowowowow {
+  0% {
+    color: blue;
+  }
+  25% {
+    color: orange;
+  }
+  50% {
+    color: yellow;
+  }
+  75% {
+    color: black;
+  }
+  100% {
+    color: red;
+  }
+}
+@keyframes shake {
+  0% {
+    transform: translate(1px, 1px) rotate(0deg);
+  }
+  10% {
+    transform: translate(-1px, -2px) rotate(-1deg);
+  }
+  20% {
+    transform: translate(-3px, 0px) rotate(1deg);
+  }
+  30% {
+    transform: translate(3px, 2px) rotate(0deg);
+  }
+  40% {
+    transform: translate(1px, -1px) rotate(1deg);
+  }
+  50% {
+    transform: translate(-1px, 2px) rotate(-1deg);
+  }
+  60% {
+    transform: translate(-3px, 1px) rotate(0deg);
+  }
+  70% {
+    transform: translate(3px, 1px) rotate(-1deg);
+  }
+  80% {
+    transform: translate(-1px, -1px) rotate(1deg);
+  }
+  90% {
+    transform: translate(1px, 2px) rotate(0deg);
+  }
+  100% {
+    transform: translate(1px, -2px) rotate(-1deg);
+  }
+}/*# sourceMappingURL=style.css.map */

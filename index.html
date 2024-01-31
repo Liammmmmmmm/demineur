@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Démineur</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body onload="loaddiff()">
+
+    <canvas id="customCursor"></canvas>
+    <!-- <div id="tsparticles"></div> -->
+    <div class="infos">
+        <div class="timercontent timer">0</div>
+        <div class="flagsleft">0</div>
+        <div class="difficulty">
+            Difficultée : 
+            <select name="diff" id="diff">
+            </select>
+        </div>
+    </div>
+    <div id="gridcontainer"></div>
+    <div class="gameover endscreen">
+        <div class="title">Perdu</div>
+        <div class="container">
+            <div class="item"><div class="num timer">0</div><div class="lab">secondes</div></div>
+            <div class="item"><div class="num leftcases"></div><div class="lab">cases restantes</div></div>
+        </div>
+        <div class="restart" onclick="restart()">Recommencer</div>
+    </div>
+    <div class="win endscreen">
+        <div class="title">Gagné</div>
+        <div class="container">
+            <div class="item"><div class="num timer">0</div><div class="lab">secondes</div></div>
+        </div>
+        <div class="restart" onclick="restart()">Recommencer</div>
+    </div>
+
+
+    <script src="/js/sounds.js"></script>
+    <script src="/js/index.js"></script>
+    <script src="/js/cursor.js"></script>
+  <!-- <script  src="./particles.js" crossorigin></script> -->
+    <!-- <script type="module" src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.0.3/tsparticles.confetti.bundle.min.js"></script> -->
+    <!-- <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script> -->
+</body>
+</html>
