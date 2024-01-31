@@ -1,5 +1,12 @@
 let gridsizes = [
     {
+        name: "riquiqui",
+        visibleName: "VRAIMENT débutant",
+        x: 8,
+        y: 7,
+        mines: 10
+    },
+    {
         name: "small",
         visibleName: "Petit",
         x: 10,
@@ -94,6 +101,12 @@ function initGrid(gridsize) {
     let line = []
 
     let gridparams = gridsizes.find(element => element.name === gridsize)
+
+    if(gridparams.name == "riquiqui") {
+        document.getElementById("riquiqui").innerHTML = "#hide { opacity: .9; }"
+    } else {
+        document.getElementById("riquiqui").innerHTML = ""
+    }
 
     flagleft = gridparams.mines
     flagleftdom.textContent = flagleft
