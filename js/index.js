@@ -38,7 +38,73 @@ let gridsizes = [
     
 ]
 
-console.log(audio)
+function setCookie(cname, cvalue, exdays) {
+    const d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    let expires = "expires="+ d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+    let name = cname + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for(let i = 0; i <ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+}
+
+let shovelcheck = document.getElementById("shovelcheck")
+let shovelcookie = getCookie("shovel")
+let customcursorcanva = document.getElementById("customCursor")
+let stylecustomcursor = document.getElementById("cursorpointer")
+
+if(shovelcookie == "" || shovelcookie == undefined || shovelcookie == "undefined") {
+    setCookie("shovel", "true", 30)
+    shovelcheck.checked = true
+} else {
+    if(shovelcookie == "true") {
+        shovelcheck.checked = true
+    } else {
+        customcursorcanva.style.display = "none";
+        stylecustomcursor.innerHTML = `
+        body {
+            cursor: default;
+        }
+        .custom-cursor {
+            cursor: pointer;
+        }
+        `
+    }
+}
+
+shovelcheck.addEventListener("click", (e) => {
+    shovelcookie = getCookie("shovel")
+    if(shovelcookie == "true") {
+        setCookie("shovel", "false", 30)
+        customcursorcanva.style.display = "none";
+        stylecustomcursor.innerHTML = `
+        body {
+            cursor: default;
+        }
+        .custom-cursor {
+            cursor: pointer;
+        }
+        `
+    } else {
+        setCookie("shovel", "true", 30)
+        customcursorcanva.style.display = "block";
+        stylecustomcursor.innerHTML = ``
+    }
+});
+
 
 let firstclick = true;
 let isgamestarted = true;
@@ -323,7 +389,36 @@ function revealCells(y, x) {
     let gridparams = gridsizes.find(element => element.name === game.size);
 
     if (game.grid[y][x] !== 0) {
-        cell.classList.remove("hidecell");
+        
+        if(cell.classList.contains("hidecell") == false) {
+            let nbflags = 0
+            for (let i = -1; i <= 1; i++) {
+                for (let j = -1; j <= 1; j++) {
+                    const newX = x + i;
+                    const newY = y + j;
+    
+                    if (newX >= 0 && newX < gridparams.x && newY >= 0 && newY < gridparams.y && document.getElementById("h" + newY + "-" + newX).classList.contains('hidecell') && document.getElementById("h" + newY + "-" + newX).classList.contains('mark')) {
+                        nbflags += 1
+                    }
+                }
+            }
+
+            if(nbflags >= parseInt(document.getElementById(y + "-" + x).textContent)) {
+                for (let i = -1; i <= 1; i++) {
+                    for (let j = -1; j <= 1; j++) {
+                        const newX = x + i;
+                        const newY = y + j;
+        
+                        if (newX >= 0 && newX < gridparams.x && newY >= 0 && newY < gridparams.y && document.getElementById("h" + newY + "-" + newX).classList.contains('hidecell') && !document.getElementById("h" + newY + "-" + newX).classList.contains('mark')) {
+                                
+                            revealCells(newY, newX);
+                        }
+                    }
+                }
+            }  
+        }
+
+        cell.classList.remove("hidecell")
 
         if (game.grid[y][x] === "m") {
             playAudio("mine")
@@ -362,6 +457,7 @@ function clickcellright(y, x) {
     if(isgamestarted == false) return;
     let cell = document.getElementById("h" + y + "-" + x)
     if(cell.classList.contains('hidecell')) {
+        playAudio("flag")
         if(cell.classList.contains('mark')) {
             flagleft += 1;
             flagleftdom.textContent = flagleft

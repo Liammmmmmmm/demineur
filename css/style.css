@@ -40,6 +40,9 @@ body .infos .flagsleft:after {
 body .infos #diff {
   pointer-events: all;
 }
+body .infos .shovel {
+  pointer-events: all;
+}
 body #gridcontainer #hide {
   z-index: 10;
 }
